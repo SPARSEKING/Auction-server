@@ -16,16 +16,17 @@ async function start() {
         useCreateIndex: true,
         })  
 
-        app.use(bodyParser.json());
-
-        app.use('/auth', userRoute);
-
-        app.listen(PORT, () => {
-            console.log(`Server has been started on port ${PORT}...`);
-        })
     } catch(e) {
         console.log(e)
     }
+
+    app.use(bodyParser.json());
+
+    app.use('/auth', userRoute);
+
+    app.listen(PORT, () => {
+        console.log(`Server has been started on port ${PORT}...`);
+    })
 }
 
 start();
