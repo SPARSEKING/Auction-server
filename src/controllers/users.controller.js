@@ -16,14 +16,9 @@ class UserController {
     }
 
     signUp = async (req, res, next) => {
-        try {
             res 
                 .status(201)
                 .json(await this.service.signUp(req.body))
-        } catch(e) {
-            next(e);
-            return;
-        }
     }       
 }
 
