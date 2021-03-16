@@ -2,6 +2,7 @@ const express = require ('express');
 const bodyParser = require ('body-parser');
 const mongoose = require ('mongoose');
 const keys = require('./config/keys.js');
+const cors = require("cors");
 const userRoute = require('./routes/users.route');
 
 const PORT = process.env.PORT ?? 3000;
@@ -20,9 +21,11 @@ async function start() {
         console.log(e)
     }
 
+    app.use(cors());
+
     app.use(bodyParser.json());
 
-    app.use('/auth', userRoute);
+    app.use('/', userRoute);
 
     app.listen(PORT, () => {
         console.log(`Server has been started on port ${PORT}...`);

@@ -6,19 +6,25 @@ class UserController {
 
     signIn = async (req, res, next) => {
         try {
-            res 
-                .status(200)
-                .send(await this.service.signIn(req.body))
+            const result = await this.service.signIn(req.body);
+            res.status(201).json(result);
         } catch(e) {
-            next(e);
-            return;
+            console.log(e);
+            res
+                .status(400)
+                .send({error: e.message})
         }
     }
 
     signUp = async (req, res, next) => {
-            res 
-                .status(201)
-                .json(await this.service.signUp(req.body))
+        try {
+            const result = await this.service.signUp(req.body);
+            res.status(201).json(result);
+        } catch(e) {
+            res
+                .status(400)
+                .send({error: e.message})
+        }
     }       
 }
 

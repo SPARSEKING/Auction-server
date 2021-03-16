@@ -15,22 +15,28 @@ class UserService {
                 }, keys.jwt, {expiresIn: 60 * 60})
                 return {token, candidate};
             } else {
-                return createError(404, 'Password entered incorrectly.');
+                throw new Error('Password entered incorrectly.');
             }
         } else {
-            return createError(404, 'User with this login was not found.');
+            throw new Error('User with this login was not found.');
         }
     }
 
     signUp = async (newUser) => {
+        const salt = await bcrypt.genSalt(10);
         const user = new User({
             login: newUser.login,
-            password: newUser.password,
+            password: await bcrypt.hash(newUser.password, salt),
             email: newUser.email,
             seller: newUser.seller
         })
-        await user.save();
-        return user;
+        const candidate = await User.findOne({ login: user.login, email: user.email});
+        if (!candidate) {
+          await user.save();
+          return user;
+        } else {
+            throw new Error('User with this login or email already exists');
+        }
     }
 }
 
