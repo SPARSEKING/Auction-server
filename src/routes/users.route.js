@@ -5,7 +5,7 @@ const cors = require("cors");
 const controller = require('../controllers/users.controller');
 
 router
-    .post('/signup', cors(), controller.signUp)
-    .post('/signin', cors(), controller.signIn)
+    .post('/signup', controller.signUp)
+    .post('/signin', controller.signIn)
 
 module.exports = router;
