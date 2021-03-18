@@ -4,7 +4,7 @@ class UserController {
 
     service = userService;
 
-    signIn = async (req, res, next) => {
+    signIn = async (req, res) => {
         try {
             const result = await this.service.signIn(req.body);
             res.status(201).json(result);
@@ -16,7 +16,7 @@ class UserController {
         }
     }
 
-    signUp = async (req, res, next) => {
+    signUp = async (req, res) => {
         try {
             const result = await this.service.signUp(req.body);
             res.status(201).json(result);

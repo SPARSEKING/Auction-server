@@ -14,7 +14,7 @@ class UserService {
             if (passwordResult) {
                 const token = jwt.sign({
                     _id: candidate._id
-                }, keys.jwt, {expiresIn: 60 * 60})
+                }, keys.jwt, {expiresIn: 600 * 600})
                 return {token, userLogin};
             } else {
                 throw new Error('Password entered incorrectly.');

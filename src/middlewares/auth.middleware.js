@@ -11,8 +11,9 @@ module.exports =  async function (req, res, next) {
             })
         }
             const decodeData = jwt.verify(token, keys.jwt)
-            if(await User.findOne({ _id: decodeData._id })) {
-                req.user = decodeData;
+            const user = await User.findOne({ _id: decodeData._id })
+            if(user) {
+                req.user = user;
                 next();
             } else {
                 return res.status(401).json({

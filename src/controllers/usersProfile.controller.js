@@ -21,6 +21,12 @@ class UserController {
             .status(200)
             .json(await this.service.updatePassword(req.body, req.user._id))
     }
+
+    updateProfileImage = async (req, res) => {
+        res 
+            .status(200)
+            .json(await this.service.updateProfileImage(req.file, req.user))
+    }
 }
 
 module.exports = new UserController();

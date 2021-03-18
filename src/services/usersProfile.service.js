@@ -1,5 +1,6 @@
 const UserProfile = require('../models/UserProfile.js');
 const User = require('../models/User.js');
+const keys = require('../config/keys.js');
 const bcrypt = require('bcryptjs');
 
 class UsersService {
@@ -17,15 +18,19 @@ class UsersService {
                     phoneNumber: updateData.phoneNumber,
                     city: updateData.city,
                     country: updateData.country,
-                    country: updateData.country,
-                    imageSrc: updateData.file ? updateData.file.path : "" }});
+            }});
         return updateInfo;
+    }
+
+    updateProfileImage = async (file, user) => {
+        await UserProfile.updateOne(
+            {userId: user._id},
+            {$set: {imageSrc: `${keys.BASE_URL}${file.filename}`}})
+        return { message: `Message is saved on path ${file.filename}`}
     }
 
     updatePassword = async (newPassword, id) => {
         const salt = await bcrypt.genSalt(10);
-        console.log(newPassword)
-        console.log(newPassword.password)
         const updatePassword = await User.updateOne(
             {_id: id},
             {$set: {password: await bcrypt.hash(newPassword.password, salt),}});

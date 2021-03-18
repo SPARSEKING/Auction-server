@@ -7,6 +7,7 @@ const controller = require('../controllers/usersProfile.controller');
 router
     .get('/profile', authmiddleware, controller.getInfo)
     .put('/profile/password', authmiddleware, controller.updatePassword)
-    .put('/profile', upload.single("image"), authmiddleware, controller.updateInfo)
+    .put('/profile/image', authmiddleware, upload.single("image"), controller.updateProfileImage)
+    .put('/profile', authmiddleware, controller.updateInfo)
 
 module.exports = router;

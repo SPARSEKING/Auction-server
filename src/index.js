@@ -25,7 +25,8 @@ async function start() {
     app.use(cors());
 
     app.use(bodyParser.json());
-    app.use("/uploads", express.static("uploads"));
+    app.use("/uploads", express.static(process.cwd() + "/src/uploads"));
+    console.log(process.cwd())
     app.use('/', userRoute);
     app.use('/content', usersProfileRoute);
 
@@ -35,4 +36,4 @@ async function start() {
 }
 
 start();
-
+ 
