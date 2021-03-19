@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const keys = require('../config/keys.js');
 const User = require('../models/User.js');
 const UserProfile = require('../models/UserProfile.js');
+const NewVehicle = require('../models/NewVehicle.js');
 
 class UserService {
     signIn = async (user) => {
