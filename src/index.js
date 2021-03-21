@@ -25,7 +25,7 @@ async function start() {
 
     app.use(cors());
 
-    app.use(bodyParser.json());
+    app.use(bodyParser.json({limit: '50mb'}));
     app.use("/uploads", express.static(process.cwd() + "/src/uploads"));
     console.log(process.cwd())
     app.use('/', userRoute);

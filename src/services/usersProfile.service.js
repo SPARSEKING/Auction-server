@@ -3,7 +3,7 @@ const User = require('../models/User.js');
 const keys = require('../config/keys.js');
 const bcrypt = require('bcryptjs');
 
-class UsersService {
+class ProfileService {
 
     getInfo = async (id) => {
         return UserProfile.findOne({ userId: id });
@@ -38,4 +38,4 @@ class UsersService {
     }
 }
 
-module.exports = new UsersService();
+module.exports = new ProfileService();

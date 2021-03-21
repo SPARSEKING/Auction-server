@@ -8,5 +8,8 @@ router
     .get('/myvehicle', authmiddleware, controller.getVehicle)
     .post('/newvehicle', authmiddleware, controller.setData)
     .get('/newvehicle', authmiddleware, controller.getAllVehicles)
+    .put('/newvehicle/images', authmiddleware, upload.single("image", "id"), controller.uploadImages)
+    .delete('/myvehicle/:id', authmiddleware, controller.removeVehicle)
+    .post('/auctions/search', authmiddleware, controller.searchData)
 
 module.exports = router;

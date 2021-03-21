@@ -26,6 +26,9 @@ const newVehicleSchema = new Schema ({
     price: {
         type: String,
     },
+    imagesSrc: {
+        type: Array
+    },
     userId: {
         ref: "users",
         type: Schema.Types.ObjectId

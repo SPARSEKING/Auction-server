@@ -9,14 +9,18 @@ const NewVehicle = require('../models/NewVehicle.js');
 class UserService {
     signIn = async (user) => {
         const candidate = await User.findOne({ login: user.login })
-        const userLogin = candidate.login;
+        const userData = {
+            login: candidate.login,
+            seller: candidate.seller
+        }
+
         if(candidate) {
             const passwordResult = await bcrypt.compare(user.password, candidate.password);
             if (passwordResult) {
                 const token = jwt.sign({
                     _id: candidate._id
-                }, keys.jwt, {expiresIn: 600 * 600})
-                return {token, userLogin};
+                }, keys.jwt)
+                return {token, userData};
             } else {
                 throw new Error('Password entered incorrectly.');
             }

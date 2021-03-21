@@ -1,8 +1,8 @@
-const userService = require('../services/newVehicle.service');
+const vehicleService = require('../services/newVehicle.service');
 
-class UserController {
+class VehicleController {
 
-    service = userService;
+    service = vehicleService;
 
     setData = async (req, res) => {
         try {
@@ -39,6 +39,42 @@ class UserController {
                 .send({error: e.message})
         }
     }
+
+    uploadImages = async (req, res) => {
+        try {
+            res
+                .status(200)
+                .json(await this.service.uploadImages(req.file, req.body))
+        } catch(e) {
+            res
+                .status(400)
+                .send({error: e.message})
+        }
+    }
+
+    removeVehicle = async (req, res) => {
+        try {
+            res
+                .status(200)
+                .json(await this.service.removeVehicle(req.params.id, req.user))
+        } catch(e) {
+            res
+                .status(400)
+                .send({error: e.message})
+        }
+    }
+
+    searchData = async (req, res) => {
+        try {
+            res
+                .status(200)
+                .json(await this.service.searchData(req.body))
+        } catch(e) {
+            res
+                .status(400)
+                .send({error: e.message})
+        }
+    }
 }
 
-module.exports = new UserController();
+module.exports = new VehicleController();

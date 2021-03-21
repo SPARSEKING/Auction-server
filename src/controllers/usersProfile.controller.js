@@ -1,8 +1,8 @@
-const userService = require('../services/usersProfile.service');
+const profileService = require('../services/usersProfile.service');
 
-class UserController {
+class ProfileController {
 
-    service = userService;
+    service = profileService;
 
     getInfo = async (req, res) => {
         try {
@@ -53,4 +53,4 @@ class UserController {
     }
 }
 
-module.exports = new UserController();
+module.exports = new ProfileController();
