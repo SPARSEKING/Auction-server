@@ -26,7 +26,7 @@ class ProfileService {
         await UserProfile.updateOne(
             {userId: user._id},
             {$set: {imageSrc: `${keys.BASE_URL}${file.filename}`}})
-        return { message: `Message is saved on path ${file.filename}`}
+        return { message: `${file.filename} saved`}
     }
 
     updatePassword = async (newPassword, id) => {

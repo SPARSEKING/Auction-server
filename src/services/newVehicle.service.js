@@ -12,7 +12,6 @@ class VehicleService {
     }
 
     setData = async (newVehicle, id) => {
-        console.log(newVehicle);
         const vehicle = new NewVehicle({
             make: newVehicle.makes,
             model: newVehicle.model,
@@ -24,7 +23,6 @@ class VehicleService {
             price: newVehicle.price,
             userId: id
         })
-        console.log(vehicle)
         await vehicle.save();
         return vehicle;
     }

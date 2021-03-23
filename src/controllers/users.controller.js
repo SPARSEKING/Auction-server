@@ -7,7 +7,7 @@ class UserController {
     signIn = async (req, res) => {
         try {
             const result = await this.service.signIn(req.body);
-            res.status(201).json(result);
+            res.status(200).json(result);
         } catch(e) {
             console.log(e);
             res
